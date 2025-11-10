@@ -1,43 +1,24 @@
+require('dotenv').config()
 const express = require("express")
 
 const app = express()
 
+const port = process.env.PORT
 
-const {createServer} = require("http")
+const MongoDBConnection = require("./db/MongoConnection")
 
-const httpServer = createServer(app)
+const cors = require('cors')
 
-const {Server} = require("socket.io")
+app.use(cors({
+    origin:process.env.ORIGIN
+}))
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 
-const io = new Server(httpServer,{
-    cors:{
-        origin:"*"
-    }
-})
+// Database Connection
 
+MongoDBConnection()
 
-io.on("connection",(socket)=>{
-
-    
-
-    socket.on("disconnect",()=>{
-        console.log(socket.id," is disconnected");
-    })
-
-    socket.on("message",(message)=>{
-        
-        let receivedMessage ={
-            message:message.message,
-            id:socket.id
-        }
-
-        socket.broadcast.emit("receive-message",receivedMessage)
-    })
-
-
-    
-})
-
-httpServer.listen(3000,()=>{
-    console.log("running");
+app.listen(port,()=>{
+    console.log("Server is running at port ",port);
 })
