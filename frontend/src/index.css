@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@theme {
+  --font-momo: "Momo Signature", cursive;
+  --font-stack :"Stack Sans Notch", sans-serif;
+}
+
