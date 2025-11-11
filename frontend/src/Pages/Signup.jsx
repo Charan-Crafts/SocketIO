@@ -63,7 +63,7 @@ const Signup = () => {
           <InputField type="text" placeholder="Charan" setter={setUserName} value={userName} />
           <InputField type="text" placeholder="vibechat@chat.com" setter={setEmail} value={email} />
           <InputField type="password" placeholder="******" setter={setPassword} value={password} />
-          <Button type="Register" handleSignup={handleSignup} disabled={loading}></Button>
+          <Button type="Register" setter={handleSignup} disabled={loading}></Button>
         </div>
       </div>
     </div>
