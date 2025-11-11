@@ -9,4 +9,7 @@ const chatController = require("../controllers/chat.controllers")
 
 router.get("/search",authMiddleware.authorization,chatController.search)
 
+// http://localhost:3000/api/v1/chat
+router.post("/",authMiddleware.authorization,chatController.accessChats)
+
 module.exports = router
